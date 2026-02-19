@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МЕГА СУПЕР ДУПЕР КРУТОЙ МАЙНКРАФТ САЙТ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Fredoka+One&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --dirt-brown: #8B4513;
+            --grass-green: #556B2F;
+            --stone-gray: #808080;
+            --wood-brown: #A0522D;
+            --gold-yellow: #FFD700;
+            --diamond-blue: #1E90FF;
+            --obsidian-black: #1A1A1D;
+            --lava-orange: #FF4500;
+            --water-blue: #1E90FF;
+            --sky-blue: #87CEEB;
+            --text-shadow: 2px 2px 0 var(--dirt-brown), 4px 4px 0 rgba(0,0,0,0.3);
+            --block-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        body {
+            font-family: 'VT323', monospace;
+            background: linear-gradient(to bottom, var(--sky-blue) 65%, #228B22 65%, #1A551A 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 20%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 15%);
+            z-index: -2;
+        }
+        
+        /* Анимированный фон с блоками */
+        .minecraft-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .block {
+            position: absolute;
+            border: 4px solid rgba(0,0,0,0.3);
+            box-shadow: var(--block-shadow);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .dirt {
+            background: var(--dirt-brown);
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .grass {
+            background: var(--grass-green);
+            width: 70px;
+            height: 70px;
+            top: 40%;
+            left: 15%;
+            animation-delay: -5s;
+        }
+        
+        .stone {
+            background: var(--stone-gray);
+            width: 50px;
+            height: 50px;
+            top: 60%;
+            left: 85%;
+            animation-delay: -10s;
+        }
+        
+        .wood {
+            background: var(--wood-brown);
+            width: 80px;
+            height: 80px;
+            top: 15%;
+            left: 80%;
+            animation-delay: -2s;
+        }
+        
+        .diamond {
+            background: var(--diamond-blue);
+            width: 40px;
+            height: 40px;
+            top: 75%;
+            left: 25%;
+            animation-delay: -7s;
+            border: 4px solid white;
+        }
+        
+        .gold {
+            background: var(--gold-yellow);
+            width: 45px;
+            height: 45px;
+            top: 35%;
+            left: 75%;
+            animation-delay: -3s;
+            border: 4px solid var(--dirt-brown);
+        }
+        
+        .lava {
+            background: var(--lava-orange);
+            width: 90px;
+            height: 30px;
+            top: 90%;
+            left: 40%;
+            animation: pulse 4s infinite alternate;
+            border-radius: 50%;
+            opacity: 0.85;
+        }
+        
+        .water {
+            background: var(--water-blue);
+            width: 120px;
+            height: 25px;
+            top: 85%;
+            left: 10%;
+            animation: wave 8s infinite linear;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-15px) translateX(10px) rotate(2deg); }
+            50% { transform: translateY(-25px) translateX(0) rotate(0deg); }
+            75% { transform: translateY(-15px) translateX(-10px) rotate(-2deg); }
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(0.95); opacity: 0.7; }
+            to { transform: scale(1.1); opacity: 0.95; }
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(-20%) scaleX(0.9); }
+            50% { transform: translateX(100%) scaleX(1.1); }
+            100% { transform: translateX(220%) scaleX(0.95); }
+        }
+        
+        /* Контент сайта */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(26, 26, 29, 0.85);
+            border: 8px solid var(--dirt-brown);
+            border-radius: 0;
+            margin: 20px auto;
+            max-width: 95%;
+            box-shadow: 0 10px 0 rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+            animation: headerGlow 2s infinite alternate;
+        }
+        
+        @keyframes headerGlow {
+            from { box-shadow: 0 0 15px var(--diamond-blue), 0 10px 0 rgba(0,0,0,0.4); }
+            to { box-shadow: 0 0 25px var(--gold-yellow), 0 10px 0 rgba(0,0,0,0.4); }
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 33%, rgba(255,255,255,0.1) 45%, transparent 55%);
+            transform: rotate(45deg);
+            animation: shine 8s infinite linear;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+        
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 6.5rem;
+            color: white;
+            text-shadow: var(--text-shadow), 0 0 15px var(--diamond-blue), 0 0 25px var(--gold-yellow);
+            letter-spacing: -3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            animation: titleFloat 3s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .subtitle {
+            font-size: 2.2rem;
+            color: var(--gold-yellow);
+            margin: 15px 0 30px;
+            text-shadow: 2px 2px 0 var(--dirt-brown);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .btn {
+            background: var(--dirt-brown);
+            color: white;
+            border: 6px solid #5D2E0F;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            padding: 15px 45px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: var(--block-shadow);
+            transition: var(--transition);
+            z-index: 2;
+            position: relative;
+        }
+        
+        .btn:hover {
+            background: var(--gold-yellow);
+            color: var(--obsidian-black);
+            transform: scale(1.05);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.5);
+            text-shadow: none;
+        }
+        
+        .btn:active {
+            transform: translateY(4px) scale(0.98);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+            z-index: -1;
+        }
+        
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .btn.diamond {
+            background: var(--diamond-blue);
+            border-color: white;
+            box-shadow: 0 0 15px var(--diamond-blue), var(--block-shadow);
+        }
+        
+        .btn.diamond:hover {
+            background: white;
+            color: var(--diamond-blue);
+        }
+        
+        .section {
+            background: rgba(240, 220, 180, 0.92);
+            border: 8px solid var(--dirt-brown);
+            border-radius: 0;
+            margin: 30px auto;
+            padding: 30px;
+            max-width: 95%;
+            box-shadow: 0 10px 0 rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--wood-brown);
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 8px;
+            background: var(--gold-yellow);
+            border: 3px solid var(--dirt-brown);
+        }
+        
+        /* Сетка особенностей */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 6px solid var(--stone-gray);
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--block-shadow);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 12px 0 rgba(0,0,0,0.4), 0 0 20px var(--diamond-blue);
+            z-index: 15;
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.3) 50%, transparent 55%);
+            transform: translateX(-100%);
+            transition: transform 0.8s;
+            z-index: -1;
+        }
+        
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        
+        .feature-card h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.2rem;
+            margin: 10px 0;
+            color: var(--wood-brown);
+        }
+        
+        /* Галерея */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .gallery-item {
+            height: 180px;
+            border: 5px solid var(--stone-gray);
+            background-size: cover;
+            background-position: center;
+            border-radius: 0;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--block-shadow);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--diamond-blue), var(--block-shadow);
+            z-index: 20;
+        }
+        
+        .gallery-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 70%);
+            opacity: 0.8;
+            z-index: 1;
+        }
+        
+        .gallery-item span {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            color: white;
+            font-size: 1.5rem;
+            font-family: 'Fredoka One', cursive;
+            text-align: center;
+            z-index: 2;
+            text-shadow: 2px 2px 0 black;
+        }
+        
+        /* Секция загрузки */
+        .download-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .platform-card {
+            background: rgba(26, 26, 29, 0.9);
+            border: 6px solid var(--dirt-brown);
+            border-radius: 0;
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--block-shadow);
+            transition: var(--transition);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 10px 0 rgba(0,0,0,0.5), 0 0 20px var(--gold-yellow);
+            z-index: 15;
+        }
+        
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .platform-card h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--gold-yellow);
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 2.2rem;
+            font-family: 'Fredoka One', cursive;
+            color: var(--diamond-blue);
+            margin: 10px 0;
+        }
+        
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 20px;
+            background: rgba(26, 26, 29, 0.95);
+            border: 8px solid var(--dirt-brown);
+            color: var(--gold-yellow);
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .creepers {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            font-size: 3.5rem;
+            animation: creepersMove 8s infinite linear;
+        }
+        
+        @keyframes creepersMove {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-200%); }
+        }
+        
+        /* Анимация частиц */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+            animation: particleFloat 5s ease-out forwards;
+            opacity: 0.8;
+            font-size: 1.5rem;
+        }
+        
+        @keyframes particleFloat {
+            0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-100px) translateX(50px) scale(1.5); opacity: 0; }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .btn {
+                font-size: 1.5rem;
+                padding: 12px 30px;
+            }
+            
+            .feature-icon {
+                font-size: 3.2rem;
+            }
+            
+            .platform-card {
+                width: 150px;
+                padding: 15px;
+            }
+            
+            .platform-icon {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 3.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .section {
+                padding: 20px 15px;
+                margin: 15px auto;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            .btn {
+                font-size: 1.3rem;
+                padding: 10px 20px;
+                margin: 8px 5px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .gallery-item {
+                height: 140px;
+            }
+        }
+        
+        /* Эффект наведения на весь сайт */
+        .container:hover .block {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированный фон с блоками Майнкрафт -->
+    <div class="minecraft-bg">
+        <div class="block dirt"></div>
+        <div class="block grass"></div>
+        <div class="block stone"></div>
+        <div class="block wood"></div>
+        <div class="block diamond"></div>
+        <div class="block gold"></div>
+        <div class="block lava"></div>
+        <div class="block water"></div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>MINECRAFT</h1>
+            <div class="subtitle">Построй свою вселенную, блок за блоком!</div>
+            <button class="btn diamond">НАЧАТЬ ПРИКЛЮЧЕНИЕ</button>
+            <button class="btn">СМОТРЕТЬ ТРЕЙЛЕР</button>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title">ОСОБЕННОСТИ ИГРЫ</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🌍</span>
+                    <h3>Бесконечные миры</h3>
+                    <p>Исследуйте процедурно генерируемые миры, которые практически бесконечны. Каждый новый мир уникален!</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏰</span>
+                    <h3>Строительство</h3>
+                    <p>Стройте всё что угодно: от простых хижин до величественных замков и даже работающих компьютеров!</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚔️</span>
+                    <h3>Приключения</h3>
+                    <p>Сражайтесь с монстрами, исследуйте подземелья и находите редкие сокровища в опасных пещерах.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🧰</span>
+                    <h3>Крафтинг</h3>
+                    <p>Создавайте сотни предметов, инструментов, оружия и брони из найденных ресурсов.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">ГАЛЕРЕЯ</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background-color: #4A7F3D;">
+                    <span>ЗАКАТ В МАЙНКРАФТЕ</span>
+                </div>
+                <div class="gallery-item" style="background-color: #5A4A3F;">
+                    <span>ПОДЗЕМНАЯ ПЕЩЕРА</span>
+                </div>
+                <div class="gallery-item" style="background-color: #3A5FBF;">
+                    <span>ОКЕАН И КОРАЛЛЫ</span>
+                </div>
+                <div class="gallery-item" style="background-color: #8A3A3A;">
+                    <span>НЕЗЕР И ЛАВА</span>
+                </div>
+                <div class="gallery-item" style="background-color: #2A2A2A;">
+                    <span>КРАЙ И ЭНДЕРМЕНЫ</span>
+                </div>
+                <div class="gallery-item" style="background-color: #AFAF3F;">
+                    <span>ЗОЛОТЫЕ РУДНИКИ</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">СКАЧАТЬ ИГРУ</h2>
+            <p style="text-align: center; font-size: 1.8rem; margin-bottom: 25px;">Выберите вашу платформу:</p>
+            <div class="download-grid">
+                <div class="platform-card">
+                    <span class="platform-icon">🪟</span>
+                    <h3>Windows</h3>
+                    <div class="price">$26.95</div>
+                    <button class="btn">Купить</button>
+                </div>
+                <div class="platform-card">
+                    <span class="platform-icon">🍎</span>
+                    <h3>MacOS</h3>
+                    <div class="price">$26.95</div>
+                    <button class="btn">Купить</button>
+                </div>
+                <div class="platform-card">
+                    <span class="platform-icon">🐧</span>
+                    <h3>Linux</h3>
+                    <div class="price">$26.95</div>
+                    <button class="btn">Купить</button>
+                </div>
+                <div class="platform-card">
+                    <span class="platform-icon">📱</span>
+                    <h3>PE / Mobile</h3>
+                    <div class="price">$7.49</div>
+                    <button class="btn">Купить</button>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn diamond" style="padding: 12px 50px; font-size: 1.7rem;">ПОПРОБОВАТЬ БЕСПЛАТНУЮ ДЕМО</button>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2026 МЕГА СУПЕР ДУПЕР КРУТОЙ ФАН-САЙТ ПРО МАЙНКРАФТ</p>
+        <p>Официальный сайт игры: minecraft.net | Не является официальным продуктом Mojang Studios</p>
+        <div class="creepers">
+            <span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span>
+        </div>
+    </footer>
+    
+    <script>
+        // Создание частиц при клике
+        document.addEventListener('click', function(e) {
+            // Создаем частицу только если клик не по кнопке
+            if (!e.target.closest('button')) {
+                createParticle(e.clientX, e.clientY, '✨');
+            }
+        });
+        
+        // Создание частиц при наведении на кнопки
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function(e) {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        createParticle(e.clientX + Math.random() * 40 - 20, e.clientY + Math.random() * 40 - 20, getRandomEmoji());
+                    }, i * 50);
+                }
+            });
+        });
+        
+        // Создание частиц при наведении на карточки
+        document.querySelectorAll('.feature-card, .gallery-item, .platform-card').forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                createParticle(e.clientX, e.clientY, '💎');
+            });
+        });
+        
+        function createParticle(x, y, emoji) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.textContent = emoji;
+            
+            // Случайное направление и скорость
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 50 + Math.random() * 100;
+            const duration = 2 + Math.random() * 3;
+            
+            particle.style.animation = `particleFloat ${duration}s ease-out forwards`;
+            particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+            
+            document.body.appendChild(particle);
+            
+            // Удаляем частицу после анимации
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000);
+        }
+        
+        function getRandomEmoji() {
+            const emojis = ['✨', '💎', '🔥', '⚡', '🌟', '💫', '🌈', '💥'];
+            return emojis[Math.floor(Math.random() * emojis.length)];
+        }
+        
+        // Анимация блоков при прокрутке
+        window.addEventListener('scroll', function() {
+            const blocks = document.querySelectorAll('.block');
+            const scrollY = window.scrollY;
+            
+            blocks.forEach(block => {
+                const speed = parseFloat(block.style.animationDuration || 15) / 15;
+                block.style.animationDelay = `-${scrollY * speed / 100}s`;
+            });
+        });
+        
+        // Интерактивные кнопки
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.classList.contains('diamond')) {
+                    this.innerHTML = 'ГОТОВО!';
+                    this.style.background = '#4CAF50';
+                    this.style.borderColor = '#2E7D32';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = this.classList.contains('diamond') ? 'НАЧАТЬ ПРИКЛЮЧЕНИЕ' : (this.textContent.includes('ТРЕЙЛЕР') ? 'СМОТРЕТЬ ТРЕЙЛЕР' : 'Купить');
+                        this.style.background = this.classList.contains('diamond') ? 'var(--diamond-blue)' : 'var(--dirt-brown)';
+                        this.style.borderColor = this.classList.contains('diamond') ? 'white' : '#5D2E0F';
+                    }, 2000);
+                } else {
+                    alert('Добро пожаловать в Майнкрафт! Приготовьтесь к бесконечным приключениям в блочном мире!');
+                }
+            });
+        });
+        
+        // Эффект параллакса для блоков
+        document.addEventListener('mousemove', function(e) {
+            const blocks = document.querySelectorAll('.block');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            
+            blocks.forEach(block => {
+                block.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
