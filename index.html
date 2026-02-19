@@ -61,6 +61,7 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            pointer-events: none;
         }
         
         .block {
@@ -70,83 +71,14 @@
             animation: float 15s infinite ease-in-out;
         }
         
-        .dirt {
-            background: var(--dirt-brown);
-            width: 60px;
-            height: 60px;
-            top: 20%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-        
-        .grass {
-            background: var(--grass-green);
-            width: 70px;
-            height: 70px;
-            top: 40%;
-            left: 15%;
-            animation-delay: -5s;
-        }
-        
-        .stone {
-            background: var(--stone-gray);
-            width: 50px;
-            height: 50px;
-            top: 60%;
-            left: 85%;
-            animation-delay: -10s;
-        }
-        
-        .wood {
-            background: var(--wood-brown);
-            width: 80px;
-            height: 80px;
-            top: 15%;
-            left: 80%;
-            animation-delay: -2s;
-        }
-        
-        .diamond {
-            background: var(--diamond-blue);
-            width: 40px;
-            height: 40px;
-            top: 75%;
-            left: 25%;
-            animation-delay: -7s;
-            border: 4px solid white;
-        }
-        
-        .gold {
-            background: var(--gold-yellow);
-            width: 45px;
-            height: 45px;
-            top: 35%;
-            left: 75%;
-            animation-delay: -3s;
-            border: 4px solid var(--dirt-brown);
-        }
-        
-        .lava {
-            background: var(--lava-orange);
-            width: 90px;
-            height: 30px;
-            top: 90%;
-            left: 40%;
-            animation: pulse 4s infinite alternate;
-            border-radius: 50%;
-            opacity: 0.85;
-        }
-        
-        .water {
-            background: var(--water-blue);
-            width: 120px;
-            height: 25px;
-            top: 85%;
-            left: 10%;
-            animation: wave 8s infinite linear;
-            border-radius: 50%;
-            opacity: 0.7;
-        }
+        .dirt { background: var(--dirt-brown); width: 60px; height: 60px; top: 20%; left: 5%; animation-delay: 0s; }
+        .grass { background: var(--grass-green); width: 70px; height: 70px; top: 40%; left: 15%; animation-delay: -5s; }
+        .stone { background: var(--stone-gray); width: 50px; height: 50px; top: 60%; left: 85%; animation-delay: -10s; }
+        .wood { background: var(--wood-brown); width: 80px; height: 80px; top: 15%; left: 80%; animation-delay: -2s; }
+        .diamond { background: var(--diamond-blue); width: 40px; height: 40px; top: 75%; left: 25%; animation-delay: -7s; border: 4px solid white; }
+        .gold { background: var(--gold-yellow); width: 45px; height: 45px; top: 35%; left: 75%; animation-delay: -3s; border: 4px solid var(--dirt-brown); }
+        .lava { background: var(--lava-orange); width: 90px; height: 30px; top: 90%; left: 40%; animation: pulse 4s infinite alternate; border-radius: 50%; opacity: 0.85; }
+        .water { background: var(--water-blue); width: 120px; height: 25px; top: 85%; left: 10%; animation: wave 8s infinite linear; border-radius: 50%; opacity: 0.7; }
         
         @keyframes float {
             0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
@@ -154,16 +86,65 @@
             50% { transform: translateY(-25px) translateX(0) rotate(0deg); }
             75% { transform: translateY(-15px) translateX(-10px) rotate(-2deg); }
         }
+        @keyframes pulse { from { transform: scale(0.95); opacity: 0.7; } to { transform: scale(1.1); opacity: 0.95; } }
+        @keyframes wave { 0% { transform: translateX(-20%) scaleX(0.9); } 50% { transform: translateX(100%) scaleX(1.1); } 100% { transform: translateX(220%) scaleX(0.95); } }
         
-        @keyframes pulse {
-            from { transform: scale(0.95); opacity: 0.7; }
-            to { transform: scale(1.1); opacity: 0.95; }
+        /* 🔥 СЕКЦИЯ РАЗРАБОТЧИКА - КРУПНО И ЯРКО 🔥 */
+        .developer-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--obsidian-black), var(--dirt-brown));
+            border-top: 6px solid var(--gold-yellow);
+            padding: 15px 20px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+            animation: glowBanner 2s infinite alternate;
         }
         
-        @keyframes wave {
-            0% { transform: translateX(-20%) scaleX(0.9); }
-            50% { transform: translateX(100%) scaleX(1.1); }
-            100% { transform: translateX(220%) scaleX(0.95); }
+        @keyframes glowBanner {
+            from { box-shadow: 0 -5px 20px var(--diamond-blue), 0 -5px 0 rgba(0,0,0,0.3); }
+            to { box-shadow: 0 -5px 30px var(--gold-yellow), 0 -5px 0 rgba(0,0,0,0.3); }
+        }
+        
+        .developer-name {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.8rem;
+            color: var(--gold-yellow);
+            text-shadow: 3px 3px 0 var(--dirt-brown), 0 0 15px var(--diamond-blue);
+            letter-spacing: 3px;
+            animation: namePulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes namePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .developer-title {
+            font-size: 1.4rem;
+            color: var(--diamond-blue);
+            margin-top: 5px;
+            text-shadow: 1px 1px 0 var(--dirt-brown);
+        }
+        
+        .developer-badge {
+            display: inline-block;
+            background: var(--diamond-blue);
+            color: white;
+            padding: 3px 12px;
+            border: 3px solid white;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 10px;
+            animation: badgeBounce 1s infinite;
+        }
+        
+        @keyframes badgeBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         
         /* Контент сайта */
@@ -173,6 +154,7 @@
             padding: 20px;
             position: relative;
             z-index: 10;
+            padding-bottom: 100px;
         }
         
         header {
@@ -180,7 +162,6 @@
             padding: 40px 20px;
             background: rgba(26, 26, 29, 0.85);
             border: 8px solid var(--dirt-brown);
-            border-radius: 0;
             margin: 20px auto;
             max-width: 95%;
             box-shadow: 0 10px 0 rgba(0,0,0,0.4);
@@ -224,10 +205,7 @@
             z-index: 2;
         }
         
-        @keyframes titleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+        @keyframes titleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         
         .subtitle {
             font-size: 2.2rem;
@@ -238,6 +216,7 @@
             z-index: 2;
         }
         
+        /* Кнопки */
         .btn {
             background: var(--dirt-brown);
             color: white;
@@ -254,7 +233,6 @@
             box-shadow: var(--block-shadow);
             transition: var(--transition);
             z-index: 2;
-            position: relative;
         }
         
         .btn:hover {
@@ -283,9 +261,7 @@
             z-index: -1;
         }
         
-        .btn:hover::after {
-            transform: translateX(100%);
-        }
+        .btn:hover::after { transform: translateX(100%); }
         
         .btn.diamond {
             background: var(--diamond-blue);
@@ -298,10 +274,16 @@
             color: var(--diamond-blue);
         }
         
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        /* Секции */
         .section {
             background: rgba(240, 220, 180, 0.92);
             border: 8px solid var(--dirt-brown);
-            border-radius: 0;
             margin: 30px auto;
             padding: 30px;
             max-width: 95%;
@@ -352,6 +334,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: var(--block-shadow);
+            cursor: pointer;
         }
         
         .feature-card:hover {
@@ -373,23 +356,10 @@
             z-index: -1;
         }
         
-        .feature-card:hover::before {
-            transform: translateX(100%);
-        }
+        .feature-card:hover::before { transform: translateX(100%); }
         
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            display: block;
-            text-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
-        
-        .feature-card h3 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 2.2rem;
-            margin: 10px 0;
-            color: var(--wood-brown);
-        }
+        .feature-icon { font-size: 4rem; margin-bottom: 15px; display: block; text-shadow: 0 0 10px rgba(0,0,0,0.3); }
+        .feature-card h3 { font-family: 'Fredoka One', cursive; font-size: 2.2rem; margin: 10px 0; color: var(--wood-brown); }
         
         /* Галерея */
         .gallery-grid {
@@ -404,7 +374,6 @@
             border: 5px solid var(--stone-gray);
             background-size: cover;
             background-position: center;
-            border-radius: 0;
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -455,7 +424,6 @@
         .platform-card {
             background: rgba(26, 26, 29, 0.9);
             border: 6px solid var(--dirt-brown);
-            border-radius: 0;
             width: 200px;
             padding: 20px;
             text-align: center;
@@ -469,24 +437,136 @@
             z-index: 15;
         }
         
-        .platform-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
+        .platform-icon { font-size: 4rem; margin-bottom: 15px; display: block; }
+        .platform-card h3 { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--gold-yellow); margin-bottom: 10px; }
+        .price { font-size: 2.2rem; font-family: 'Fredoka One', cursive; color: var(--diamond-blue); margin: 10px 0; }
+        
+        /* 🔥 НОВАЯ СЕКЦИЯ: ОБ ИГРЕ 🔥 */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .about-content { grid-template-columns: 1fr; }
+        }
+        
+        .about-text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+        }
+        
+        .about-text ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        .about-text li { margin: 8px 0; }
+        
+        .version-info {
+            background: rgba(30, 144, 255, 0.15);
+            border: 4px dashed var(--diamond-blue);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .version-info strong { color: var(--diamond-blue); }
+        
+        /* 🔥 СЕКЦИЯ: СООБЩЕСТВО 🔥 */
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.9);
+            border: 5px solid var(--gold-yellow);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .stat-number {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            color: var(--diamond-blue);
             display: block;
         }
         
-        .platform-card h3 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 1.8rem;
-            color: var(--gold-yellow);
-            margin-bottom: 10px;
+        .stat-label {
+            font-size: 1.4rem;
+            color: var(--wood-brown);
         }
         
-        .price {
-            font-size: 2.2rem;
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content {
+            background: linear-gradient(135deg, var(--obsidian-black), var(--dirt-brown));
+            border: 8px solid var(--gold-yellow);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: modalPop 0.3s ease-out;
+        }
+        
+        @keyframes modalPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2.5rem;
+            color: var(--gold-yellow);
+            cursor: pointer;
+            background: none;
+            border: none;
             font-family: 'Fredoka One', cursive;
+        }
+        
+        .modal h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
             color: var(--diamond-blue);
+            margin: 15px 0;
+        }
+        
+        .modal p {
+            font-size: 1.5rem;
+            color: white;
             margin: 10px 0;
+        }
+        
+        .modal-buttons {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         /* Футер */
@@ -511,12 +591,9 @@
             animation: creepersMove 8s infinite linear;
         }
         
-        @keyframes creepersMove {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-200%); }
-        }
+        @keyframes creepersMove { 0% { transform: translateX(100%); } 100% { transform: translateX(-200%); } }
         
-        /* Анимация частиц */
+        /* Частицы */
         .particle {
             position: absolute;
             pointer-events: none;
@@ -533,78 +610,63 @@
         
         /* Адаптивность */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 4.5rem;
-            }
-            
-            .subtitle {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 2.8rem;
-            }
-            
-            .btn {
-                font-size: 1.5rem;
-                padding: 12px 30px;
-            }
-            
-            .feature-icon {
-                font-size: 3.2rem;
-            }
-            
-            .platform-card {
-                width: 150px;
-                padding: 15px;
-            }
-            
-            .platform-icon {
-                font-size: 3rem;
-            }
+            h1 { font-size: 4.5rem; }
+            .subtitle { font-size: 1.8rem; }
+            .section-title { font-size: 2.8rem; }
+            .btn { font-size: 1.5rem; padding: 12px 30px; }
+            .feature-icon { font-size: 3.2rem; }
+            .platform-card { width: 150px; padding: 15px; }
+            .platform-icon { font-size: 3rem; }
+            .developer-name { font-size: 2rem; }
+            .developer-title { font-size: 1.1rem; }
         }
         
         @media (max-width: 480px) {
-            h1 {
-                font-size: 3.8rem;
-            }
-            
-            .subtitle {
-                font-size: 1.5rem;
-            }
-            
-            .section {
-                padding: 20px 15px;
-                margin: 15px auto;
-            }
-            
-            .section-title {
-                font-size: 2.3rem;
-            }
-            
-            .btn {
-                font-size: 1.3rem;
-                padding: 10px 20px;
-                margin: 8px 5px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-            
-            .gallery-item {
-                height: 140px;
-            }
+            h1 { font-size: 3.8rem; }
+            .subtitle { font-size: 1.5rem; }
+            .section { padding: 20px 15px; margin: 15px auto; }
+            .section-title { font-size: 2.3rem; }
+            .btn { font-size: 1.3rem; padding: 10px 20px; margin: 8px 5px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .gallery-item { height: 140px; }
+            .developer-name { font-size: 1.6rem; letter-spacing: 1px; }
+            .developer-badge { font-size: 0.9rem; padding: 2px 8px; }
         }
         
-        /* Эффект наведения на весь сайт */
-        .container:hover .block {
-            animation-play-state: paused;
+        .container:hover .block { animation-play-state: paused; }
+        
+        /* Уведомления */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--diamond-blue);
+            color: white;
+            padding: 15px 25px;
+            border: 4px solid white;
+            border-radius: 10px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            z-index: 1500;
+            animation: toastSlide 0.3s ease-out;
+            max-width: 300px;
+        }
+        
+        @keyframes toastSlide {
+            from { transform: translateX(150%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .toast.hide { animation: toastSlideOut 0.3s ease-in forwards; }
+        @keyframes toastSlideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(150%); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Анимированный фон с блоками Майнкрафт -->
+    <!-- Анимированный фон -->
     <div class="minecraft-bg">
         <div class="block dirt"></div>
         <div class="block grass"></div>
@@ -616,33 +678,68 @@
         <div class="block water"></div>
     </div>
     
+    <!-- 🔥 БАННЕР РАЗРАБОТЧИКА - КРУПНО И ЯРКО 🔥 -->
+    <div class="developer-banner">
+        <div class="developer-name">
+            🛠️ ПЛАТОНОВ МАТВЕЙ <span class="developer-badge">РАЗРАБОТЧИК</span> 🛠️
+        </div>
+        <div class="developer-title">Создатель этого МЕГА СУПЕР ДУПЕР КРУТОГО сайта про Minecraft</div>
+    </div>
+    
     <div class="container">
         <header>
             <h1>MINECRAFT</h1>
             <div class="subtitle">Построй свою вселенную, блок за блоком!</div>
-            <button class="btn diamond">НАЧАТЬ ПРИКЛЮЧЕНИЕ</button>
-            <button class="btn">СМОТРЕТЬ ТРЕЙЛЕР</button>
+            <button class="btn diamond" id="btn-adventure">🎮 НАЧАТЬ ПРИКЛЮЧЕНИЕ</button>
+            <button class="btn" id="btn-trailer">🎬 СМОТРЕТЬ ТРЕЙЛЕР</button>
         </header>
         
+        <!-- 🔥 НОВАЯ СЕКЦИЯ: ОБ ИГРЕ 🔥 -->
         <section class="section">
-            <h2 class="section-title">ОСОБЕННОСТИ ИГРЫ</h2>
+            <h2 class="section-title">📖 ОБ ИГРЕ</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Minecraft</strong> — это песочница с открытым миром, где вы можете строить, исследовать, сражаться и выживать!</p>
+                    <ul>
+                        <li>🌍 Процедурно генерируемые миры</li>
+                        <li>⛏️ Добывайте ресурсы и крафтите предметы</li>
+                        <li>🏰 Стройте замки, города, механизмы</li>
+                        <li>👥 Играйте в одиночку или с друзьями</li>
+                        <li>🔥 Выживайте ночью против монстров</li>
+                    </ul>
+                    <div class="version-info">
+                        <strong>🎯 Текущая версия:</strong> 1.21.4 "Tricky Trials"<br>
+                        <strong>📅 Дата обновления:</strong> Декабрь 2024<br>
+                        <strong>🌐 Поддержка:</strong> Windows, Mac, Linux, Mobile, Console
+                    </div>
+                    <button class="btn" id="btn-learn-more">📚 УЗНАТЬ БОЛЬШЕ</button>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 8rem; text-shadow: 4px 4px 0 var(--dirt-brown);">⛏️</div>
+                    <p style="font-size: 1.8rem; margin-top: 10px; color: var(--wood-brown);">Добывай • Строй • Побеждай</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">✨ ОСОБЕННОСТИ</h2>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card" data-feature="worlds">
                     <span class="feature-icon">🌍</span>
                     <h3>Бесконечные миры</h3>
                     <p>Исследуйте процедурно генерируемые миры, которые практически бесконечны. Каждый новый мир уникален!</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-feature="building">
                     <span class="feature-icon">🏰</span>
                     <h3>Строительство</h3>
                     <p>Стройте всё что угодно: от простых хижин до величественных замков и даже работающих компьютеров!</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-feature="adventure">
                     <span class="feature-icon">⚔️</span>
                     <h3>Приключения</h3>
                     <p>Сражайтесь с монстрами, исследуйте подземелья и находите редкие сокровища в опасных пещерах.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card" data-feature="crafting">
                     <span class="feature-icon">🧰</span>
                     <h3>Крафтинг</h3>
                     <p>Создавайте сотни предметов, инструментов, оружия и брони из найденных ресурсов.</p>
@@ -651,82 +748,279 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">ГАЛЕРЕЯ</h2>
+            <h2 class="section-title">🖼️ ГАЛЕРЕЯ</h2>
             <div class="gallery-grid">
-                <div class="gallery-item" style="background-color: #4A7F3D;">
+                <div class="gallery-item" style="background-color: #4A7F3D;" data-image="Закат в Майнкрафте">
                     <span>ЗАКАТ В МАЙНКРАФТЕ</span>
                 </div>
-                <div class="gallery-item" style="background-color: #5A4A3F;">
+                <div class="gallery-item" style="background-color: #5A4A3F;" data-image="Подземная пещера">
                     <span>ПОДЗЕМНАЯ ПЕЩЕРА</span>
                 </div>
-                <div class="gallery-item" style="background-color: #3A5FBF;">
+                <div class="gallery-item" style="background-color: #3A5FBF;" data-image="Океан и кораллы">
                     <span>ОКЕАН И КОРАЛЛЫ</span>
                 </div>
-                <div class="gallery-item" style="background-color: #8A3A3A;">
+                <div class="gallery-item" style="background-color: #8A3A3A;" data-image="Незер и лава">
                     <span>НЕЗЕР И ЛАВА</span>
                 </div>
-                <div class="gallery-item" style="background-color: #2A2A2A;">
+                <div class="gallery-item" style="background-color: #2A2A2A;" data-image="Край и эндермены">
                     <span>КРАЙ И ЭНДЕРМЕНЫ</span>
                 </div>
-                <div class="gallery-item" style="background-color: #AFAF3F;">
+                <div class="gallery-item" style="background-color: #AFAF3F;" data-image="Золотые рудники">
                     <span>ЗОЛОТЫЕ РУДНИКИ</span>
                 </div>
             </div>
         </section>
         
+        <!-- 🔥 НОВАЯ СЕКЦИЯ: СООБЩЕСТВО 🔥 -->
         <section class="section">
-            <h2 class="section-title">СКАЧАТЬ ИГРУ</h2>
+            <h2 class="section-title">👥 СООБЩЕСТВО</h2>
+            <p style="text-align: center; font-size: 1.7rem; margin-bottom: 20px;">Присоединяйся к миллионам игроков по всему миру!</p>
+            <div class="community-stats">
+                <div class="stat-card">
+                    <span class="stat-number">140M+</span>
+                    <span class="stat-label">Игроков</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">500M+</span>
+                    <span class="stat-label">Продано копий</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Возможностей</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Онлайн сервера</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="btn diamond" id="btn-community">💬 ПРИСОЕДИНИТЬСЯ К СООБЩЕСТВУ</button>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">📥 СКАЧАТЬ ИГРУ</h2>
             <p style="text-align: center; font-size: 1.8rem; margin-bottom: 25px;">Выберите вашу платформу:</p>
             <div class="download-grid">
                 <div class="platform-card">
                     <span class="platform-icon">🪟</span>
                     <h3>Windows</h3>
                     <div class="price">$26.95</div>
-                    <button class="btn">Купить</button>
+                    <button class="btn btn-buy" data-platform="Windows">Купить</button>
                 </div>
                 <div class="platform-card">
                     <span class="platform-icon">🍎</span>
                     <h3>MacOS</h3>
                     <div class="price">$26.95</div>
-                    <button class="btn">Купить</button>
+                    <button class="btn btn-buy" data-platform="MacOS">Купить</button>
                 </div>
                 <div class="platform-card">
                     <span class="platform-icon">🐧</span>
                     <h3>Linux</h3>
                     <div class="price">$26.95</div>
-                    <button class="btn">Купить</button>
+                    <button class="btn btn-buy" data-platform="Linux">Купить</button>
                 </div>
                 <div class="platform-card">
                     <span class="platform-icon">📱</span>
                     <h3>PE / Mobile</h3>
                     <div class="price">$7.49</div>
-                    <button class="btn">Купить</button>
+                    <button class="btn btn-buy" data-platform="Mobile">Купить</button>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 30px;">
-                <button class="btn diamond" style="padding: 12px 50px; font-size: 1.7rem;">ПОПРОБОВАТЬ БЕСПЛАТНУЮ ДЕМО</button>
+                <button class="btn diamond" id="btn-demo" style="padding: 12px 50px; font-size: 1.7rem;">🆓 ПОПРОБОВАТЬ БЕСПЛАТНУЮ ДЕМО</button>
             </div>
         </section>
     </div>
     
     <footer>
         <p>© 2026 МЕГА СУПЕР ДУПЕР КРУТОЙ ФАН-САЙТ ПРО МАЙНКРАФТ</p>
-        <p>Официальный сайт игры: minecraft.net | Не является официальным продуктом Mojang Studios</p>
+        <p>Официальный сайт игры: <a href="https://minecraft.net" target="_blank" style="color: var(--diamond-blue);">minecraft.net</a> | Не является официальным продуктом Mojang Studios</p>
+        <p style="margin-top: 10px; font-size: 1.3rem; color: var(--stone-gray);">
+            Сайт разработан с ❤️ <strong>Платоновым Матвеем</strong>
+        </p>
         <div class="creepers">
             <span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span><span>💚</span>
         </div>
     </footer>
     
+    <!-- 🔥 МОДАЛЬНОЕ ОКНО 🔥 -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">×</button>
+            <h3 id="modal-title">Заголовок</h3>
+            <p id="modal-message">Сообщение</p>
+            <div class="modal-buttons" id="modal-buttons">
+                <button class="btn diamond" id="modal-confirm">ОК</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
-        // Создание частиц при клике
+        // ==================== 🔥 ФУНКЦИОНАЛ КНОПОК 🔥 ====================
+        
+        // Показ уведомления
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('hide');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        // Показ модального окна
+        function showModal(title, message, confirmText = 'ОК', onConfirm = null) {
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal-confirm').textContent = confirmText;
+            
+            const confirmBtn = document.getElementById('modal-confirm');
+            
+            // Удаляем старые обработчики
+            const newConfirmBtn = confirmBtn.cloneNode(true);
+            confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+            
+            if (onConfirm) {
+                newConfirmBtn.onclick = () => {
+                    onConfirm();
+                    modal.classList.remove('active');
+                };
+            } else {
+                newConfirmBtn.onclick = () => modal.classList.remove('active');
+            }
+            
+            modal.classList.add('active');
+        }
+        
+        // Закрытие модального окна
+        document.getElementById('modal-close').onclick = () => {
+            document.getElementById('modal').classList.remove('active');
+        };
+        
+        document.getElementById('modal').onclick = (e) => {
+            if (e.target.id === 'modal') {
+                document.getElementById('modal').classList.remove('active');
+            }
+        };
+        
+        // 🔥 КНОПКА: НАЧАТЬ ПРИКЛЮЧЕНИЕ 🔥
+        document.getElementById('btn-adventure').onclick = () => {
+            showModal(
+                '🎮 Добро пожаловать в Minecraft!',
+                'Готов ли ты к бесконечным приключениям?\n\n✨ Создай свой мир\n⛏️ Добывай ресурсы\n🏰 Строй великие сооружения\n⚔️ Сражайся с монстрами\n\nНажми "ОК" чтобы начать!',
+                'НАЧАТЬ ИГРУ',
+                () => showToast('🚀 Запускаем Minecraft... (шутка, перейдите на minecraft.net)')
+            );
+        };
+        
+        // 🔥 КНОПКА: СМОТРЕТЬ ТРЕЙЛЕР 🔥
+        document.getElementById('btn-trailer').onclick = () => {
+            showModal(
+                '🎬 Официальный трейлер Minecraft',
+                'Смотрите захватывающий трейлер на YouTube!\n\n🔗 Ссылка откроется в новой вкладке.',
+                'СМОТРЕТЬ СЕЙЧАС',
+                () => {
+                    window.open('https://www.youtube.com/results?search_query=minecraft+official+trailer', '_blank');
+                    showToast('🎥 Приятного просмотра!');
+                }
+            );
+        };
+        
+        // 🔥 КНОПКА: УЗНАТЬ БОЛЬШЕ 🔥
+        document.getElementById('btn-learn-more').onclick = () => {
+            showModal(
+                '📚 Подробнее о Minecraft',
+                'Minecraft — игра в жанре песочницы, созданная шведским разработчиком Маркусом Перссоном (Notch).\n\n🗓️ Выпущена: 18 ноября 2011\n🏢 Разработчик: Mojang Studios\n🎮 Платформы: ПК, консоли, мобильные\n🌐 Мультиплеер: До 100+ игроков\n\nПосетите официальный сайт для полной информации!',
+                'ПЕРЕЙТИ НА ОФИЦИАЛЬНЫЙ САЙТ',
+                () => {
+                    window.open('https://www.minecraft.net', '_blank');
+                    showToast('🌐 Открываем minecraft.net...');
+                }
+            );
+        };
+        
+        // 🔥 КНОПКИ: ПОКУПКА 🔥
+        document.querySelectorAll('.btn-buy').forEach(btn => {
+            btn.onclick = function() {
+                const platform = this.dataset.platform;
+                const price = this.closest('.platform-card').querySelector('.price').textContent;
+                
+                showModal(
+                    `🛒 Покупка для ${platform}`,
+                    `Вы выбрали версию для ${platform}\n💰 Цена: ${price}\n\n✅ Покупка безопасна и мгновенна\n🎁 Включает все будущие обновления!\n\nПерейти к оформлению заказа?`,
+                    'ОФОРМИТЬ ЗАКАЗ',
+                    () => {
+                        window.open('https://www.minecraft.net/store', '_blank');
+                        showToast(`🎉 Переход к покупке ${platform} версии!`);
+                    }
+                );
+            };
+        });
+        
+        // 🔥 КНОПКА: БЕСПЛАТНАЯ ДЕМО 🔥
+        document.getElementById('btn-demo').onclick = () => {
+            showModal(
+                '🆓 Бесплатная демо-версия',
+                'Хотите попробовать Minecraft бесплатно?\n\n✅ Классическая версия в браузере\n✅ Без регистрации\n✅ Мгновенный запуск\n\n⚠️ Ограниченный функционал',
+                'ИГРАТЬ СЕЙЧАС',
+                () => {
+                    window.open('https://classic.minecraft.net', '_blank');
+                    showToast('🎮 Запускаем классическую версию!');
+                }
+            );
+        };
+        
+        // 🔥 КНОПКА: СООБЩЕСТВО 🔥
+        document.getElementById('btn-community').onclick = () => {
+            showModal(
+                '👥 Сообщество Minecraft',
+                'Присоединяйся к огромному сообществу!\n\n💬 Discord сервера\n🌐 Мультиплеерные миры\n🎨 Делитесь постройками\n📺 Стримы и видео\n🏆 Соревнования и ивенты\n\nГде хочешь начать?',
+                'НАЙТИ СЕРВЕР',
+                () => {
+                    window.open('https://www.minecraft.net/community', '_blank');
+                    showToast('🔍 Ищем лучшие сервера для тебя!');
+                }
+            );
+        };
+        
+        // 🔥 КАРТОЧКИ ОСОБЕННОСТЕЙ 🔥
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.onclick = function() {
+                const feature = this.dataset.feature;
+                const features = {
+                    worlds: { title: '🌍 Бесконечные миры', desc: 'Каждый мир генерируется процедурно с использованием seed. Вы можете найти горы, океаны, пустыни, джунгли и даже редкие биомы вроде грибных полей!' },
+                    building: { title: '🏰 Творческое строительство', desc: 'В творческом режиме у вас есть доступ ко всем блокам. Стройте что угодно без ограничений! Включите редстоун для создания сложных механизмов.' },
+                    adventure: { title: '⚔️ Приключения и выживание', desc: 'Добывайте ресурсы, создавайте снаряжение, исследуйте пещеры и сражайтесь с мобами. Найдите крепости, сокровищницы и портал в Незер!' },
+                    crafting: { title: '🧰 Система крафта', desc: 'Объединяйте ресурсы в верстаке для создания инструментов, оружия, брони и полезных предметов. Более 800 рецептов ждут вашего открытия!' }
+                };
+                const f = features[feature];
+                showModal(f.title, f.desc, 'КРУТО!', () => showToast(`✨ ${f.title} — это awesome!`));
+            };
+        });
+        
+        // 🔥 ГАЛЕРЕЯ 🔥
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.onclick = function() {
+                const title = this.dataset.image;
+                showModal('🖼️ ' + title, `Вы просматриваете: "${title}"\n\n📸 Это скриншот из игры Minecraft.\n🎨 Хотите создать такой же? Начните строить!`, 'ЕЩЁ ФОТО', () => {
+                    showToast('📷 Загружаем следующую галерею...');
+                });
+            };
+        });
+        
+        // ==================== ✨ ЭФФЕКТЫ И ЧАСТИЦЫ ✨ ====================
+        
         document.addEventListener('click', function(e) {
-            // Создаем частицу только если клик не по кнопке
-            if (!e.target.closest('button')) {
+            if (!e.target.closest('button') && !e.target.closest('.modal')) {
                 createParticle(e.clientX, e.clientY, '✨');
             }
         });
         
-        // Создание частиц при наведении на кнопки
         document.querySelectorAll('.btn').forEach(button => {
             button.addEventListener('mouseenter', function(e) {
                 for (let i = 0; i < 5; i++) {
@@ -737,7 +1031,6 @@
             });
         });
         
-        // Создание частиц при наведении на карточки
         document.querySelectorAll('.feature-card, .gallery-item, .platform-card').forEach(card => {
             card.addEventListener('mouseenter', function(e) {
                 createParticle(e.clientX, e.clientY, '💎');
@@ -750,67 +1043,45 @@
             particle.style.left = `${x}px`;
             particle.style.top = `${y}px`;
             particle.textContent = emoji;
-            
-            // Случайное направление и скорость
             const angle = Math.random() * Math.PI * 2;
             const distance = 50 + Math.random() * 100;
             const duration = 2 + Math.random() * 3;
-            
             particle.style.animation = `particleFloat ${duration}s ease-out forwards`;
             particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
-            
             document.body.appendChild(particle);
-            
-            // Удаляем частицу после анимации
-            setTimeout(() => {
-                particle.remove();
-            }, duration * 1000);
+            setTimeout(() => particle.remove(), duration * 1000);
         }
         
         function getRandomEmoji() {
-            const emojis = ['✨', '💎', '🔥', '⚡', '🌟', '💫', '🌈', '💥'];
+            const emojis = ['✨', '💎', '🔥', '⚡', '🌟', '💫', '🌈', '💥', '⛏️', '🧱'];
             return emojis[Math.floor(Math.random() * emojis.length)];
         }
         
-        // Анимация блоков при прокрутке
+        // Параллакс эффект для блоков
+        document.addEventListener('mousemove', function(e) {
+            const blocks = document.querySelectorAll('.block');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            blocks.forEach(block => {
+                block.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+        });
+        
+        // Анимация блоков при скролле
         window.addEventListener('scroll', function() {
             const blocks = document.querySelectorAll('.block');
             const scrollY = window.scrollY;
-            
             blocks.forEach(block => {
                 const speed = parseFloat(block.style.animationDuration || 15) / 15;
                 block.style.animationDelay = `-${scrollY * speed / 100}s`;
             });
         });
         
-        // Интерактивные кнопки
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function() {
-                if (!this.classList.contains('diamond')) {
-                    this.innerHTML = 'ГОТОВО!';
-                    this.style.background = '#4CAF50';
-                    this.style.borderColor = '#2E7D32';
-                    
-                    setTimeout(() => {
-                        this.innerHTML = this.classList.contains('diamond') ? 'НАЧАТЬ ПРИКЛЮЧЕНИЕ' : (this.textContent.includes('ТРЕЙЛЕР') ? 'СМОТРЕТЬ ТРЕЙЛЕР' : 'Купить');
-                        this.style.background = this.classList.contains('diamond') ? 'var(--diamond-blue)' : 'var(--dirt-brown)';
-                        this.style.borderColor = this.classList.contains('diamond') ? 'white' : '#5D2E0F';
-                    }, 2000);
-                } else {
-                    alert('Добро пожаловать в Майнкрафт! Приготовьтесь к бесконечным приключениям в блочном мире!');
-                }
-            });
-        });
-        
-        // Эффект параллакса для блоков
-        document.addEventListener('mousemove', function(e) {
-            const blocks = document.querySelectorAll('.block');
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            
-            blocks.forEach(block => {
-                block.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            });
+        // 🔥 ПРИВЕТСТВИЕ ПРИ ЗАГРУЗКЕ 🔥
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showToast('👋 Привет! Сайт разработан Платоновым Матвеем!');
+            }, 1500);
         });
     </script>
 </body>
